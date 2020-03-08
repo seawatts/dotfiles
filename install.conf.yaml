@@ -1,0 +1,38 @@
+- defaults:
+  link:
+    create: true
+    relink: true
+
+- clean:
+  - '~'
+  # - '~/.ssh'
+  # - '~/bin'
+
+- link:
+  ~/.config/:
+    glob: true
+    path: config/*
+  ~/.bin/:
+    glob: true
+    path: config/*
+  ~/.vim:
+  ~/.vimrc:
+  ~/.zshrc:
+    force: true
+  ~/.dotfiles: 'src/github.com/seawatts/dotfiles'
+  ~/.tmux.conf:
+  ~/.vim:
+  ~/.vimrc:
+
+- create:
+  - ~/.vim/undo-history
+  - ~/src/github.com
+
+
+- shell:
+  - ["git submodule update --init --recursive", Installing submodules]
+  - ["git submodule sync", Syncing submodule remotes]
+  - ["git submodule foreach git pull origin master", Updating submodule contents]
+  - ["date > ~/.dotfiles_update", Logging last update]
+  - chsh -s $(which zsh)
+  - [chsh -s $(which zsh), Making zsh the default shell]
