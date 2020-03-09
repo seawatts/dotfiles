@@ -1,0 +1,9 @@
+[diff]
+    tool = default-difftool
+[difftool "default-difftool"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+[user]
+	name = Chris Watts
+	email = chris.watts.t@gmail.com
+[core]
+	excludesfile = ~/.gitignore_global

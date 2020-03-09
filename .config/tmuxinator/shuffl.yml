@@ -1,0 +1,29 @@
+# ~/.tmuxinator/shuffl.yml
+
+name: shuffl
+root: ~/src/github.com/seawatts/shuffl
+
+windows:
+  - server:
+      layout: tiled
+      panes:
+        - test:
+            - yarn test:watch
+        - watch:
+            - yarn build:watch
+        - bot-slack:
+            - cd packages/bot-slack
+            - yarn dev
+        - bot-scheduler:
+            - cd node_modules/bull-board
+            - yarn
+            - cd ../../packages/bot-scheduler
+            - yarn start:server
+        - marketing:
+            - cd ~/src/github.com/seawatts/shuffl-marketing
+            - jekyll serve
+        - empty:
+            - cd ~/src/github.com/seawatts
+            - open shuffl.code-workspace
+            - cd shuffl
+            - docker-compose down && docker-compose up -d
