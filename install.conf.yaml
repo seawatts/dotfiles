@@ -24,7 +24,7 @@
   - tmuxinator
 
 - tap:
-  - caskroom/fonts
+  - homebrew/cask-fonts
 
 - cask:
   - ngrok
