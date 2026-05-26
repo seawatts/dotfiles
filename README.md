@@ -30,35 +30,30 @@ My personal dotfiles configuration for macOS.
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/dotfiles.git ~/dotfiles
+   git clone https://github.com/seawatts/dotfiles.git ~/dotfiles
    cd ~/dotfiles
    ```
 
-2. Run the setup script:
+2. Run the setup script (installs Homebrew, the `Brewfile` deps, Oh My Zsh,
+   OMZ custom plugins, symlinks dotfiles, and pulls Vim plugins):
    ```bash
    ./setup.sh
    ```
 
-3. Restart your terminal or run:
+3. Open a new terminal, or run:
    ```bash
    source ~/.zshrc
    ```
 
-## Manual Installation
+The script is idempotent — re-running it is safe and will only fill in what's
+missing.
 
-If you prefer to install manually:
+## What's in the Brewfile
 
-1. Create symlinks:
-   ```bash
-   ln -s ~/dotfiles/zshrc ~/.zshrc
-   ln -s ~/dotfiles/zprofile ~/.zprofile
-   ln -s ~/dotfiles/zshenv ~/.zshenv
-   ```
-
-2. Install Vim plugins:
-   ```bash
-   vim +PluginInstall +qall
-   ```
+CLI tools the zsh config relies on (`zoxide`, `fnm`, `jq`, `gh`, `git-lfs`,
+`tmux`, `vim`), language version managers (`rbenv`, `pyenv`, `nvm`), JS
+runtimes (`bun`, `pnpm`), Infisical CLI, and OrbStack. Edit `Brewfile` and
+re-run `brew bundle --file=~/dotfiles/Brewfile` to apply changes.
 
 ## Requirements
 
