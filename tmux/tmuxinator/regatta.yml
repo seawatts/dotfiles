@@ -1,0 +1,17 @@
+# ~/.tmuxinator/regatta.yml
+
+name: regatta
+root: ~/src/github.com/seawatts
+
+windows:
+  - webApp:
+      layout: tiled
+      panes:
+        - startWebApp:
+          - cd regatta-web-app
+          - yarn dev
+        - webAppConsole:
+          - cd regatta-web-app
+        - startApi:
+          - cd regatta-web-app
+          - yarn storybook

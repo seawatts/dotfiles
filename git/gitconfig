@@ -1,0 +1,29 @@
+[core]
+	excludesfile = ~/.gitignore_global
+	editor = vim
+[credential]
+	helper = osxkeychain
+[user]
+	name = Chris Watts
+	email = chris.watts.t@gmail.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[pull]
+	ff = only
+[init]
+	defaultBranch = main
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[push]
+	autoSetupRemote = true
+[diff]
+	tool = default-difftool
+[difftool "default-difftool"]
+	cmd = cursor --wait --diff $LOCAL $REMOTE

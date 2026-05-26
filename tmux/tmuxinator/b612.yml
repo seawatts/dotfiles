@@ -1,0 +1,54 @@
+# ~/.tmuxinator/b612.yml
+
+name: b612
+root: ~/src/github.com/b612
+
+windows:
+  - backend:
+        layout: tiled
+        panes:
+          - start:
+            - cd b612-backend
+            # - yarn start
+          - currentDir:
+            - cd b612-backend
+          - infra:
+            - cd b612-backend/packages/infrastructure
+            # - yarn storybook
+          - watchInfra:
+            - cd b612-backend/packages/infrastructure
+            # - yarn start
+  - opsDashboard:
+      layout: tiled
+      panes:
+        - startApp:
+          - cd b612-ops-dashboard
+          - yarn dev
+        - appConsole:
+          - cd b612-ops-dashboard
+        - startStorybook:
+          - cd b612-ops-dashboard
+          - yarn storybook -p 9001
+  - tagWebAp:
+      layout: tiled
+      panes:
+        - startApp:
+          - cd b612-tag-web-app
+          - yarn dev
+        - appConsole:
+          - cd b612-tag-web-app
+        - startStorybook:
+          - cd b612-tag-web-app
+          - yarn storybook -p 9002
+
+  - webApp:
+      layout: tiled
+      panes:
+        - startApp:
+          - cd b612-web-app
+          - yarn dev
+        - appConsole:
+          - cd b612-web-app
+        - startStorybook:
+          - cd b612-web-app
+          - yarn storybook

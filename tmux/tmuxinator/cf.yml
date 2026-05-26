@@ -1,0 +1,22 @@
+# ~/.tmuxinator/cf.yml
+
+name: cf
+root: ~/src/github.com/co-founder
+on_project_start: cd mainsail
+on_project_first_start: cd mainsail && pnpm sso && cursor .
+
+windows:
+  - backend:
+        layout: tiled
+        panes:
+          - chromeExtension:
+            - cd mainsail/apps/chrome-extension
+            - pnpm dev
+          - infra:
+            - cd mainsail
+            - pnpm dev:sst
+          - webApp:
+            - cd mainsail/apps/web-app-v2
+            - pnpm dev
+
+

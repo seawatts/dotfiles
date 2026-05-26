@@ -1,0 +1,54 @@
+# ~/.tmuxinator/shuffl.yml
+
+name: shuffl
+root: ~/src/github.com/shuffl
+
+windows:
+  - webApp:
+      layout: tiled
+      panes:
+        - startWebApp:
+          - cd web-app
+          - yarn start
+        - webAppConsole:
+          - cd web-app
+        - startApi:
+          - cd shuffl/packages/web-app-api
+          - yarn start
+        - shuffl:
+          - cd shuffl/packages/web-app-api
+  - tailwindUi:
+      layout: tiled
+      panes:
+        - startStorybook:
+          - cd tailwind-ui-react
+          - yarn start
+        - root:
+          - cd tailwind-ui-react
+  - webAppInternal:
+      layout: tiled
+      panes:
+        - startWebApp:
+          - cd internal-web-app
+          - yarn start
+        - webAppConsole:
+          - cd internal-web-app
+        - startApi:
+          - cd shuffl/packages/web-app-api-internal
+          - yarn start
+        - shuffl:
+          - cd shuffl/packages/web-app-api-internal
+  - infra:
+      layout: tiled
+      panes:
+        - infraStart:
+          - cd shuffl/packages/infrastructure
+          - yarn start
+        - slack:
+          - cd shuffl/packages/slack-web-api
+          - yarn start
+        - webappapi:
+          - cd shuffl
+        - model:
+          - cd shuffl/packages/model
+

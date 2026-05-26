@@ -1,0 +1,17 @@
+# ~/.tmuxinator/b612.yml
+
+name: rocket-cafe
+root: ~/src/github.com/glonky
+
+windows:
+  - webApp:
+      layout: tiled
+      panes:
+        - startWebApp:
+          - cd rocket-cafe
+          - yarn dev
+        - webAppConsole:
+          - cd rocket-cafe
+        - startStorybook:
+          - cd rocket-cafe
+          - yarn storybook

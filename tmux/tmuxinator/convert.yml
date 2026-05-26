@@ -1,0 +1,14 @@
+# ~/.tmuxinator/convert.yml
+
+name: convert
+root: ~/Desktop
+
+windows:
+  - backend:
+        layout: tiled
+        panes:
+          - webApp:
+            - ./convert-mov-to-mp4.sh
+
+
+

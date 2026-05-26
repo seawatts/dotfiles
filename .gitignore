@@ -1,0 +1,119 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# History files
+.zsh_history
+.bash_history
+.python_history
+.node_repl_history
+.lesshst
+.history
+
+# Cache directories
+.cache/
+.npm/
+.yarn/
+.vscode-insiders/
+.cursor-tutor*/
+.Trash/
+.zsh/cache/
+.zcompdump*
+.zcompcache
+
+# Sensitive files
+.aws/
+.ssh/
+.netrc
+.stripe/
+.dynobase-aws-sso-client-credentials
+.npmrc  # unless you want to track it (remove this line if you do)
+.gitconfig  # unless you want to track it (remove this line if you do)
+
+# Temporary files
+*.swp
+*.swo
+*~
+*.tmp
+*.temp
+
+# Backup files
+*.backup
+*.bak
+*.old
+*.orig
+
+# Log files
+*.log
+logs/
+
+# Local configuration files
+.env
+.env.local
+.env.*.local
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-*
+.atom/
+.brackets.json
+
+# Package manager files
+node_modules/
+vendor/
+bower_components/
+
+# Build artifacts
+dist/
+build/
+*.pyc
+__pycache__/
+*.o
+*.so
+
+# Test coverage
+coverage/
+.coverage
+.nyc_output/
+
+# Local development files
+.local/
+local/
+
+# macOS specific
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Windows specific
+*.lnk
+desktop.ini
+
+# Linux specific
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Dotfiles specific
+# Ignore backup files created during editing
+zshrc.backup
+zshrc.optimized
+*.backup
+*.optimized
+
+# Ignore any local overrides
+.local/
+local/
+
+# Vim plugins (managed by Vundle)
+vim/vim/bundle/*
+!vim/vim/bundle/Vundle.vim/

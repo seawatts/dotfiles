@@ -1,0 +1,25 @@
+# ~/.tmuxinator/mr.yml
+
+name: mr
+root: ~/src/github.com/seawatts
+# on_project_start: cd mainsail-racing && pnpm sso
+on_project_first_start: cd mainsail-racing && code-insiders .
+
+windows:
+  - backend:
+        layout: tiled
+        panes:
+          - webApp:
+            - cd mainsail-racing
+            # - pnpm dev:web-app-storybook
+          - webApp:
+            - cd mainsail-racing
+            - pnpm dev
+            # - pnpm dev:web-app
+          - currentDir:
+            - cd mainsail-racing
+          - infra:
+            - cd mainsail-racing
+            # - pnpm dev:sst
+
+

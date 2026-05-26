@@ -1,0 +1,7 @@
+# ~/.tmuxinator/synology.yml
+
+name: synology
+root: ~/
+
+windows:
+  - server: ssh admin@guy1-data.synology.me && cd /Volumn1/media

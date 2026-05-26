@@ -1,0 +1,16 @@
+# ~/.tmuxinator/binder-app.yml
+
+name: binder
+root: ~/src/github.com/glonky/binder-app
+
+windows:
+  - webApp:
+      layout: tiled
+      panes:
+        - start:
+          - yarn dev
+        - test:
+          - yarn
+        - console:
+          -
+        - infra:

@@ -1,0 +1,18 @@
+# ~/.tmuxinator/vesper.yml
+
+name: vesper
+root: ~/src/github.com/glonky/vesper-discord-bot
+
+windows:
+  - webApp:
+      layout: tiled
+      panes:
+        - start:
+          - yarn lerna run start --stream
+        - test:
+          - yarn test:watch
+        - console:
+          -
+        - infra:
+          - cd packages/infrastructure
+          - yarn cdk watch --profile glonky-sandbox --all

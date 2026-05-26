@@ -1,0 +1,221 @@
+" .vimrc
+set encoding=utf-8
+
+filetype off
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'                   " Git integration
+Plugin 'scrooloose/nerdtree'                  " File tree
+Plugin 'bling/vim-airline'                    " Status bar
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'    " Add ability to view relitive and total line numbers
+Plugin 'scrooloose/syntastic'                 " Syntax checking for all the languages
+Plugin 'airblade/vim-gitgutter'               " Add ability to view changed lines in the gutter
+Plugin 'editorconfig/editorconfig-vim'        " Load .editorconfig file to use common coding style
+Plugin 'kien/ctrlp.vim'                       " Allow for searching of files
+Plugin 'rking/ag.vim'                         " Search for contents within files
+Plugin 'Shougo/neocomplcache.vim'             " Code completion of contents in cache
+Plugin 'sandeepcr529/Buffet.vim'              " Switch between tabs and windows in buffer
+Plugin 'tomtom/tcomment_vim'                  " Ability to comment in different file types
+Plugin 'sheerun/vim-polyglot'                 " Adds syntax and indenting for all languages
+Plugin 'ervandew/supertab'                    " Adds tab to do auto complete
+Plugin 'rizzatti/dash.vim'                    " Adds dash support
+Plugin 'tpope/vim-surround'
+Plugin 'vim-airline/vim-airline-themes'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+
+syntax on                         " show syntax highlighting
+filetype plugin indent on
+" Plugin config
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline#extensions#tabline#right_sep = ''
+let g:airline#extensions#tabline#right_alt_sep = ''
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline_theme='powerlineish'
+"let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#whitespace#mixed_indent_algo = 1
+"let g:airline#extensions#whitespace#symbol = '!'
+"
+" Syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{syntasticstatuslineflag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_signs = 1
+
+set autoindent                    " set auto indent
+set ts=2                          " set indent to 2 spaces
+set shiftwidth=2
+set expandtab                     " use spaces, not tab characters
+set nocompatible                  " don't need to be compatible with old vim
+set showmatch                     " show bracket matches
+set relativenumber                " set relitive line numbers
+set ignorecase                    " ignore case in search
+set hlsearch                      " highlight all search matches
+set cursorline                    " highlight current line
+set smartcase                     " pay attention to case when caps are used
+set incsearch                     " show search results as I type
+set mouse=a                       " enable mouse support
+set ttimeoutlen=100               " decrease timeout for faster insert with 'O'
+set vb                            " enable visual bell (disable audio bell)
+set ruler                         " show row and column in footer
+set scrolloff=2                   " minimum lines above/below cursor
+set laststatus=2                  " always show status bar
+set list listchars=tab:»·,trail:· " show extra space characters
+set nofoldenable                  " disable code folding
+" set clipboard=unnamed             " use the system clipboard
+set wildmenu                      " enable bash style tab completion
+set wildmode=list:longest,full
+set backspace=indent,eol,start    " enable backspace over autoindent, line breaks, and start of insert
+runtime macros/matchit.vim        " use % to jump between start/end of methods
+
+
+" Color scheme and font
+
+"let base16colorspace=256
+set t_Co=256
+set background=dark
+colorscheme base16-railscasts
+
+highlight clear SignColumn
+highlight VertSplit    ctermbg=236
+highlight ColorColumn  ctermbg=237
+highlight LineNr       ctermbg=236 ctermfg=240
+highlight CursorLineNr ctermbg=236 ctermfg=240
+highlight CursorLine   ctermbg=236
+"highlight StatusLineNC ctermbg=238 ctermfg=0
+"highlight StatusLine   ctermbg=240 ctermfg=12
+highlight IncSearch    ctermbg=3   ctermfg=1
+highlight Search       ctermbg=1   ctermfg=3
+highlight Visual       ctermbg=3   ctermfg=0
+highlight Pmenu        ctermbg=240 ctermfg=12
+highlight PmenuSel     ctermbg=3   ctermfg=1
+highlight SpellBad     ctermbg=0   ctermfg=1
+
+"Hightlight current line
+"autocmd FileType javascript,html,css,php autocmd InsertLeave * set nocursorline
+"autocmd FileType javascript,html,css,php autocmd InsertEnter * set cursorline
+"autocmd FileType javascript,html,css,php highlight CursorLine ctermbg=40 cterm=NONE
+"colorscheme railscasts
+" highlight the status bar when in insert mode
+if version >= 700
+  au InsertEnter * hi StatusLine ctermfg=235 ctermbg=2
+  au InsertLeave * hi StatusLine ctermbg=240 ctermfg=12
+endif
+
+" highlight trailing spaces in annoying red
+highlight ExtraWhitespace ctermbg=1 guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+" set leader key to comma
+let mapleader = ","
+
+" ctrlp config
+let g:ctrlp_map = '<leader>f'
+"let g:ctrlp_max_height = 30
+"let g:ctrlp_working_path_mode = 0
+let g:ctrlp_match_window_reversed = 0
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+set wildignore+=*/node_modules/*,*/bower_components/*
+let g:ctrlp_show_hidden = 1
+
+" use silver searcher for ctrlp
+"let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+" Sets paste mode for pasting text from other apps. Press F3 to get into paste
+" mode and F3 to exit it after the text has been pasted.
+nnoremap <F3> :set invpaste paste?<CR>
+set pastetoggle=<F3>
+set showmode
+
+" Dash F1 help
+nmap <F1> <Plug>DashSearch
+imap <F1> <Plug>DashSearch
+" unmap ex mode: 'Type visual to go into Normal mode.'
+nnoremap Q <nop>
+
+" Shortcut for NERDTreetoggle
+map <F2> :NERDTreeToggle<cr>
+let NERDTreeShowHidden = 1
+
+" map . in visual mode
+vnoremap . :norm.<cr>
+
+" map markdown preview
+map <leader>m :!open -a Marked %<cr><cr>
+
+" map git commands
+map <leader>b :Gblame<cr>
+map <leader>l :!clear && git log -p %<cr>
+map <leader>d :!clear && git diff %<cr>
+
+" map Slver Searcher
+map <leader>a :Ag!<space>
+
+" clear the command line and search highlighting
+noremap <C-l> :nohlsearch<CR>
+
+" toggle spell check with <F5>
+map <F5> :setlocal spell! spelllang=en_us<cr>
+imap <F5> <ESC>:setlocal spell! spelllang=en_us<cr>
+
+" add :Plain command for converting text to plaintext
+command! Plain execute "%s/’/'/ge | %s/[“”]/\"/ge | %s/—/-/ge"
+
+" hint to keep lines short
+if exists('+colorcolumn')
+  set colorcolumn=120
+endif
+
+" jump to last position in file
+autocmd BufReadPost *
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal g`\"" |
+  \ endif
+
+" multi-purpose tab key (auto-complete)
+function! InsertTabWrapper()
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-p>"
+  endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-n>
+
+" rename current file, via Gary Bernhardt
+function! RenameFile()
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'))
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' . old_name
+    redraw!
+  endif
+endfunction
+map <leader>n :call RenameFile()<cr>

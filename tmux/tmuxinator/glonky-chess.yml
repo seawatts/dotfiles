@@ -1,0 +1,17 @@
+# ~/.tmuxinator/glonky-chess.yml
+
+name: glonky-chess
+root: ~/src/github.com/glonky
+
+windows:
+  - webApp:
+      layout: tiled
+      panes:
+        - startWebApp:
+          - cd glonky-chess-web3-app
+          - yarn dev
+        - webAppConsole:
+          - cd glonky-chess-web3-app
+        - startApi:
+          - cd glonky-chess-web3-app
+          - yarn storybook

@@ -1,0 +1,16 @@
+# ~/.tmuxinator/ on-script.yml
+
+name: os
+root: ~/src/github.com/seawatts/on-script
+on_project_first_start: code-insiders .
+
+windows:
+  - backend:
+        layout: tiled
+        panes:
+          - webApp:
+            - pnpm dev
+          - infra:
+            -
+
+

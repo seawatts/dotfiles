@@ -1,0 +1,7 @@
+# ~/.tmuxinator/plex.yml
+
+name: plex
+root: ~/
+
+windows:
+  - server: ssh seawatts@10.0.0.179

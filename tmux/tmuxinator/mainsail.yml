@@ -1,0 +1,24 @@
+# ~/.tmuxinator/cf.yml
+
+name: mainsail
+root: ~/src/github.com/seawatts
+on_project_start: cd sail-ai && pnpm sso
+on_project_first_start: cd sail-ai && code-insiders .
+
+windows:
+  - backend:
+        layout: tiled
+        panes:
+          - webApp:
+            - cd sail-ai
+            - pnpm dev:web-app-storybook
+          - webApp:
+            - cd sail-ai
+            - pnpm dev:web-app
+          - currentDir:
+            - cd sail-ai
+          - infra:
+            - cd sail-ai
+            - pnpm dev:sst
+
+
