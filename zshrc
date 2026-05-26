@@ -61,11 +61,20 @@ path=(
 # =============================================================================
 # Tool Initializations - Lazy loaded where possible
 # =============================================================================
+# Lazy-loader function names can collide with aliases set by OMZ plugins
+# or earlier sources of this file. Unalias defensively before (re)defining.
+unalias z rbenv nvm bun go mise pyenv 2>/dev/null
+
 # Zoxide - Lazy loaded
 z() {
   unfunction "$0"
-  eval "$(zoxide init zsh)"
-  $0 "$@"
+  if command -v zoxide >/dev/null 2>&1; then
+    eval "$(zoxide init zsh)"
+    $0 "$@"
+  else
+    echo "zoxide not installed" >&2
+    return 1
+  fi
 }
 
 # Ruby - lazy load rbenv
