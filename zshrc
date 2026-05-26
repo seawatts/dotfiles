@@ -201,7 +201,7 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # OpenClaw Completion
-source "/Users/seawatts/.openclaw/completions/openclaw.zsh"
+[ -f "$HOME/.openclaw/completions/openclaw.zsh" ] && source "$HOME/.openclaw/completions/openclaw.zsh"
 export PATH=$PATH:$HOME/.maestro/bin
 
 # Zero CLI
