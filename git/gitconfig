@@ -6,6 +6,7 @@
 [user]
 	name = Chris Watts
 	email = chris.watts.t@gmail.com
+	signingkey = /Users/seawatts/.ssh/id_ed25519.pub
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -27,3 +28,11 @@
 	tool = default-difftool
 [difftool "default-difftool"]
 	cmd = cursor --wait --diff $LOCAL $REMOTE
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+[gpg "ssh"]
+	allowedSignersFile = /Users/seawatts/.config/git/allowed_signers

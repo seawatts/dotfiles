@@ -93,10 +93,7 @@ nvm() {
   $0 "$@"
 }
 
-# fnm (Node version manager used by openrouter-web) — eager because of --use-on-cd
-if command -v fnm >/dev/null 2>&1; then
-  eval "$(fnm env --use-on-cd)"
-fi
+# fnm is initialized at the very end of this file (see "fnm").
 
 
 
@@ -138,11 +135,6 @@ alias bt='bun typecheck'
 alias bd='bun dev'
 alias bi='bun install'
 
-# PNPM
-alias pi='pnpm install'
-alias pt='pnpm typecheck'
-alias pb='pnpm build'
-
 # Infisical
 alias i='infisical'
 alias ir='infisical run --recursive -- '
@@ -182,19 +174,7 @@ go() {
   export PATH=$PATH:$(command go env GOPATH)/bin
   $0 "$@"
 }
-# Mise - Lazy loaded
-mise() {
-  unfunction "$0"
-  if command -v mise &> /dev/null; then
-    eval "$(mise activate zsh --shims)"
-    eval "$(mise activate zsh)"
-  elif [ -f ~/.local/bin/mise ]; then
-    export PATH="$HOME/.local/bin:$PATH"
-    eval "$(~/.local/bin/mise activate zsh --shims)"
-    eval "$(~/.local/bin/mise activate zsh)"
-  fi
-  $0 "$@"
-}
+# Mise - activated eagerly at the end of this file (see "Mise - eager activation")
 
 # alias claude="/Users/seawatts/.claude/local/claude"  # disabled 2026-04-30 — broken by claude-code auto-updater; using Homebrew install instead
 
@@ -215,3 +195,39 @@ export PATH=$PATH:$HOME/.maestro/bin
 
 # Zero CLI
 export PATH="$HOME/.zero/bin:$PATH"
+
+# Pi
+export PATH="/Users/seawatts/.local/share/fnm/node-versions/v22.21.1/installation/bin:$PATH"
+
+# Added by Devin
+export PATH="/Users/seawatts/.codeium/windsurf/bin:$PATH"
+
+# Personal secrets (API keys) are NOT kept in this repo. Put them in
+# ~/.config/zsh/secrets.zsh (mode 600, untracked) and export them there.
+[ -f "$HOME/.config/zsh/secrets.zsh" ] && source "$HOME/.config/zsh/secrets.zsh"
+# export ANTHROPIC_BASE_URL="https://openrouter.ai/api"   # no /v1 for Claude Code
+# export ANTHROPIC_AUTH_TOKEN="$OPENROUTER_API_KEY"
+# export ANTHROPIC_API_KEY=""                              # must be empty string, not unset
+# Mise - eager activation. Keep this last: `mise activate` prepends per-project
+# mise.toml PATH entries, so anything exported below would shadow them.
+if command -v mise &> /dev/null; then
+  eval "$(mise activate zsh --shims)"
+  eval "$(mise activate zsh)"
+elif [ -f "$HOME/.local/bin/mise" ]; then
+  export PATH="$HOME/.local/bin:$PATH"
+  eval "$("$HOME/.local/bin/mise" activate zsh --shims)"
+  eval "$("$HOME/.local/bin/mise" activate zsh)"
+fi
+
+# NemoClaw PATH setup
+export PATH="/Users/seawatts/.local/bin:$PATH"
+# end NemoClaw PATH setup
+
+# fnm (Node version manager) — eager because of --use-on-cd.
+# Keep this LAST: several directories exported above also contain a node/npm
+# (e.g. the globally-installed npm CLIs under fnm's v22 tree), and prepending
+# them after this point would shadow the per-directory Node version that
+# .nvmrc / .node-version selects.
+if command -v fnm >/dev/null 2>&1; then
+  eval "$(fnm env --use-on-cd)"
+fi
